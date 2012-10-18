@@ -37,7 +37,7 @@ For playing your own file
     cap jukebox:play -s file=http://domain.com/my_music.mp3
 
 Dependencies
-============
+------------
 
 MPlayer (http://www.mplayerhq.hu/design7/info.html)
 
