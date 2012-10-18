@@ -8,6 +8,8 @@ module Capistrano::Jukebox
 
       # Start playing music before :deploy
       on :before, :only => :deploy do
+        file = configuration[:file]
+        file = jeopardy_song if file.nil?
         start_playing(file)
       end
 
@@ -21,7 +23,7 @@ module Capistrano::Jukebox
         desc 'Start playing music on the jukebox'
         task :play, :roles => :app, :except => {:no_release => true} do
           file = configuration[:file]
-          file = File.expand_path('../../../music/jeopardy_thinking.mp3', __FILE__) if file.nil?
+          file = jeopardy_song if file.nil?
           start_playing(file)
         end
 
@@ -48,6 +50,10 @@ module Capistrano::Jukebox
         else
           exec("killall mplayer")
         end
+      end
+
+      def jeopardy_song
+        File.expand_path('../../../music/jeopardy_thinking.mp3', __FILE__)
       end
 
     end
