@@ -38,7 +38,7 @@ module Capistrano::Jukebox
       def start_playing(file)
         puts "Jukebox is starting to play '#{file}'"
         @pid = fork do
-          exec("mplayer #{file} -really-quiet -framedrop -cache 16384 -cache-min 20/100")
+          exec("mplayer #{file} -really-quiet -framedrop -cache 16384 -cache-min 20/100 -loop 0")
         end
       end
 
